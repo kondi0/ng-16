@@ -11,6 +11,6 @@ import {MatButtonModule} from "@angular/material/button";
   styleUrls: ['./movie.component.scss'],
 })
 export class MovieComponent {
-  @Input() movie: any;
+  @Input({required: true}) movie: any;
 
 }

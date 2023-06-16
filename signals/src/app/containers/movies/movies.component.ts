@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, untracked } from '@angular/core';
+import {Component, computed, effect, inject, Input, signal, untracked} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,18 +24,20 @@ import { MovieComponent } from '../../components/movie/movie.component';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent {
-  private moviesService: MoviesService = inject(MoviesService);
+  @Input() set titleUrl(value: string) {
+    this.title.set(value);
+  }
 
   title = signal('');
   year = signal('');
   anotherSignal = signal(0);
-
   performedSearch = computed(
     () =>
       'Performed Search: ' + untracked(this.title) + ', Year: ' + this.year()
   );
-
   movies = signal([]);
+
+  private moviesService: MoviesService = inject(MoviesService);
 
   constructor() {
     // effect(() => {

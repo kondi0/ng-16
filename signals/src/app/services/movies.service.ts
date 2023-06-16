@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom, map, Observable, Subject, tap} from "rxjs";
 import {Movie} from "../models/movie.interface";
@@ -9,6 +9,15 @@ import {Movie} from "../models/movie.interface";
 export class MoviesService {
   omdapi = 'https://www.omdbapi.com/';
   omdapi_apikey = '83513884';
+
+
+  // STATE EXAMPLE
+  private state = signal({name: 'MoviesService', value: 0});
+  name = computed(() => this.state().name, {equal : (value: string) => this.name() === value});
+
+  setName(name: string) {
+    this.state.update((state) => ({...state, name}));
+  }
 
   movies$: Subject<Movie[]> = new Subject<Movie[]>();
 
