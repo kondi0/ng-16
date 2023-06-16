@@ -31,10 +31,10 @@ export class MoviesComponent {
   title = '';
   year = '';
 
-  movies$: Observable<Movie[]> = of([]);
+  movies$: Observable<Movie[]> = this.moviesService.movies$;
 
   search() {
-    this.movies$ = this.moviesService.searchMovies(this.title, this.year);
+    this.moviesService.searchMovies(this.title, this.year).subscribe();
   }
 
 }

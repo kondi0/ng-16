@@ -9,7 +9,6 @@ import {MatButtonModule} from "@angular/material/button";
   imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieComponent {
   @Input() movie: any;
