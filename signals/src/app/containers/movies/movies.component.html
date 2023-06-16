@@ -1,0 +1,22 @@
+<mat-card class="filter">
+  <mat-card-content>
+    <mat-card-title>Search Movie</mat-card-title>
+    <div class="flex">
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="title"/>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Year</mat-label>
+        <input matInput [(ngModel)]="year"/>
+      </mat-form-field>
+      <button mat-button color="primary" (click)="search()">Search</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div class="flex">
+  <ng-container  *ngFor="let movie of movies$ | async">
+    <app-movie [movie]="movie"/>
+  </ng-container>
+</div>
+
