@@ -4,18 +4,22 @@
     <div class="flex">
       <mat-form-field class="example-full-width">
         <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="title"/>
+        <input matInput [ngModel]="title()" (ngModelChange)="title.set($event)"/>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Year</mat-label>
-        <input matInput [(ngModel)]="year"/>
+        <input matInput [ngModel]="year()" (ngModelChange)="year.set($event)"/>
       </mat-form-field>
       <button mat-button color="primary" (click)="search()">Search</button>
+      <button mat-button color="primary" (click)="updateTitle()">updateTitle</button>
     </div>
   </mat-card-content>
+  search: {{title()}} {{year()}}
+  computed: {{performedSearch()}}<br>
+  {{anotherSignal()}}
 </mat-card>
 <div class="flex">
-  <ng-container  *ngFor="let movie of movies$ | async">
+  <ng-container  *ngFor="let movie of movies()">
     <app-movie [movie]="movie"/>
   </ng-container>
 </div>
