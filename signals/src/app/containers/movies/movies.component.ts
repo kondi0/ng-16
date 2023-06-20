@@ -33,7 +33,7 @@ export class MoviesComponent {
 
   movies$: Observable<Movie[]> = this.moviesService.movies$;
 
-  search() {
+  search(): void {
     this.moviesService.searchMovies(this.title, this.year).subscribe();
   }
 
